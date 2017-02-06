@@ -13,17 +13,17 @@ public class ConverterTest {
     private String json;
 
 
-    private static String readFile(String path) throws IOException {
+    private static String interpretFile(String path) throws IOException {
         File file = new File(path);
         Scanner scanner = new Scanner(file);
         String newline = System.getProperty("line.separator");
-        String out = "";
+        String output = "";
 
         try {
             while(scanner.hasNextLine()) {
-                out += scanner.nextLine() + newline;
+                output += scanner.nextLine() + newline;
             }
-            return out;
+            return output;
         } finally {
             scanner.close();
         }
@@ -32,8 +32,8 @@ public class ConverterTest {
     @Before
     public void setUp() {
         try {
-            json = readFile("src/test/resources/grades.json");
-            csv = readFile("src/test/resources/grades.csv");
+            json = interpretFile("src/test/resources/grades.json");
+            csv = interpretFile("src/test/resources/grades.csv");
         } catch(IOException e) {}
     }
 

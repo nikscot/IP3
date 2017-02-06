@@ -5,25 +5,25 @@ import java.io.*;
 public class Main {
     public static void main(String[] args) {
         ClassLoader loader = ClassLoader.getSystemClassLoader();
-        StringBuffer csvContents = new StringBuffer();
+        StringBuffer csvData = new StringBuffer();
         try(BufferedReader reader = new BufferedReader(new InputStreamReader(loader.getResourceAsStream("grades.csv")))) {
             String line;
             while((line = reader.readLine()) != null) {
-                csvContents.append(line + '\n');
+                csvData.append(line + '\n');
             }
         }
         catch(IOException e) { e.printStackTrace(); }
-        String testCsv = csvContents.toString();
+        String testCsv = csvData.toString();
         
-        StringBuffer jsonContents = new StringBuffer();
+        StringBuffer jsonData = new StringBuffer();
         try(BufferedReader reader = new BufferedReader(new InputStreamReader(loader.getResourceAsStream("grades.json")))) {
             String line;
             while((line = reader.readLine()) != null) {
-                jsonContents.append(line + '\n');
+                jsonData.append(line + '\n');
             }
         }
         catch(IOException e) { e.printStackTrace(); }
-        String testJson = jsonContents.toString();
+        String testJson = jsonData.toString();
 
         String json = Converter.csvToJson(testCsv);
         System.out.println(json);
